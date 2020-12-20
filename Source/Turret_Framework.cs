@@ -7,11 +7,13 @@ using Verse;
 
 namespace RimDungeon
 {
-    public class RimDungeon_Turrets : Building_TurretGun
+    public class Turret_Framework : Building_TurretGun
     {
-        public Dungeon_Turret_Def TurretDef => base.def.GetModExtension<Dungeon_Turret_Def>();
-        bool secondaryGun = false;
+        public Turret_Def TurretDef => base.def.GetModExtension<Turret_Def>();
+        bool changeGun = false;
         bool changedShell = false;
+        int currentGun = 0;
+        
         public override void PostMake()
         {
             base.PostMake();
@@ -35,17 +37,20 @@ namespace RimDungeon
             {
                 projectile = this.gun.TryGetComp<CompChangeableProjectile>();
             }
-            if (secondaryGun)
+            if (changeGun && currentGun + 1 < TurretDef.guns.Count)
             {
-                this.gun = ThingMaker.MakeThing(TurretDef.secondaryGun, null);
+                currentGun += 1;
+                this.gun = ThingMaker.MakeThing(TurretDef.guns[currentGun], null);
+                changeGun = false;
             }
-            else
+            
+            else if (changeGun && currentGun + 1 == TurretDef.guns.Count)
             {
-                this.gun = ThingMaker.MakeThing(this.def.building.turretGunDef, null);
-
+                currentGun = 0;
+                this.gun = ThingMaker.MakeThing(TurretDef.guns[currentGun], null);
+                changeGun = false;
             }
-
-            this.UpdateGunVerbs();
+            UpdateGunVerbs();
             if (projectile != null && projectile.Loaded && projectile.LoadedShell != this.AttackVerb.verbProps.defaultProjectile)
             {
                 ThingDef shell = projectile.LoadedShell;
@@ -65,7 +70,7 @@ namespace RimDungeon
                 {
                     changedShell = true;
                     ThingDef shell = projectile.LoadedShell;
-                    shell.projectileWhenLoaded = this.AttackVerb.verbProps.defaultProjectile;
+                    shell.projectileWhenLoaded = AttackVerb.verbProps.defaultProjectile;
                     this.gun.TryGetComp<CompChangeableProjectile>().LoadShell(shell, this.AttackVerb.verbProps.burstShotCount);
                 }
                 else if (!projectile.Loaded)
@@ -83,41 +88,26 @@ namespace RimDungeon
                 {
                     yield return gizmo;
                 }
-                else if (gizmo.ToString().Contains("Extract") && TurretDef.secondaryGun == null)
+                else if (gizmo.ToString().Contains("Extract") && TurretDef.guns == null)
                 {
                     yield return gizmo;
                 }
             }
             IEnumerator<Gizmo> enumerator = null;
-            if (!(TurretDef.secondaryGun is null) && !secondaryGun)
+            if (TurretDef.guns != null && TurretDef.guns.Count > 1)
             {
                 yield return new Command_Action
                 {
-                    defaultLabel = "SecondGun".Translate(),
-                    defaultDesc = "SecondGunDesc".Translate(),
+                    defaultLabel = "ChangeGun".Translate(),
+                    defaultDesc = "ChangeGunDesc".Translate(),
                     icon = ContentFinder<Texture2D>.Get("UI/Commands/HoldFire", true),
                     action = delegate ()
                     {
-                        secondaryGun = true;
+                        changeGun = true;
                         DetermineGun();
                     },
                 };
             }
-            if (!(TurretDef.secondaryGun is null) && secondaryGun)
-            {
-                yield return new Command_Action
-                {
-                    defaultLabel = "FirstGun".Translate(),
-                    defaultDesc = "FirstGunDesc".Translate(),
-                    icon = ContentFinder<Texture2D>.Get("UI/Commands/HoldFire", true),
-                    action = delegate ()
-                    {
-                        secondaryGun = false;
-                        DetermineGun();
-                    },
-                };
-            }
-            yield break;
             yield break;
 
         }
@@ -129,20 +119,16 @@ namespace RimDungeon
             {
                 stringBuilder.AppendLine(inspectString);
             }
-            if (!secondaryGun)
+            if (TurretDef.guns != null)
             {
-                stringBuilder.AppendLine("FirstGunMode".Translate());
-            }
-            if (secondaryGun)
-            {
-                stringBuilder.AppendLine("SecondGunMode".Translate());
+                stringBuilder.AppendLine("CurrentMode".Translate() + TurretDef.guns[currentGun].label);
             }
             return stringBuilder.ToString().TrimEndNewlines();
         }
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look<bool>(ref secondaryGun, "secondaryGun", false, false);
+            Scribe_Values.Look<int>(ref currentGun, "currentGun", 0, false);
         }
     }
 }

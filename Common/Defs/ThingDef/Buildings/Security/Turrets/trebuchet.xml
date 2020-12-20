@@ -19,7 +19,7 @@
 			<WoodLog>300</WoodLog>
 		</costList>
 		<modExtensions>
-			<li Class="Rimdungeon.Turrets.Dungeon_Turret_Def">
+			<li Class="Rimdungeon.Turret_Def">
 			</li>
 		</modExtensions>
 		<building>

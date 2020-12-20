@@ -1,7 +1,7 @@
 <Defs>
 	<ThingDef Name="BaseDungeonTurret" Abstract="True">
 		<category>Building</category>
-		<thingClass>RimDungeon.Turrets.Dungeon_Turret</thingClass>
+		<thingClass>RimDungeon.Turret_Framework</thingClass>
 		<altitudeLayer>Building</altitudeLayer>
 		<designationCategory>Security</designationCategory>
 		<soundImpactDefault>BulletImpact_Wood</soundImpactDefault>

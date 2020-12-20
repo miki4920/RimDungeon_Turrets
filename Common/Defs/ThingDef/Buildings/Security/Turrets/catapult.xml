@@ -21,11 +21,15 @@
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
-			<li Class="Rimdungeon.Turrets.Dungeon_Turret_Def">
-				<secondaryGun>Catapult_Multi</secondaryGun>
+			<li Class="RimDungeon.Turret_Def">
+				<guns>
+				<li>Catapult_Single</li>
+				<li>Catapult_Multi</li>
+				</guns>
 			</li>
 		</modExtensions>
 		<building>
+			<!--Determines Starting Gun-->
 			<turretGunDef>Catapult_Single</turretGunDef>
 			<turretBurstCooldownTime>8</turretBurstCooldownTime>
 		</building>
@@ -56,7 +60,7 @@
 		<projectile>
 			<damageDef>Stone</damageDef>
 			<speed>50</speed>
-			<damageAmountBase>100</damageAmountBase>
+			<damageAmountBase>50</damageAmountBase>
 			<explosionRadius>2</explosionRadius>
 			<armorPenetrationBase>0.5</armorPenetrationBase>
 			<stoppingPower>2.5</stoppingPower>
@@ -68,7 +72,7 @@
 		<projectile>
 			<damageDef>Stone</damageDef>
 			<speed>50</speed>
-			<damageAmountBase>20</damageAmountBase>
+			<damageAmountBase>10</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 			<armorPenetrationBase>0.5</armorPenetrationBase>
 			<stoppingPower>2.5</stoppingPower>
@@ -110,7 +114,7 @@
 	
 	<ThingDef ParentName="Catapult_Weapon">
 		<defName>Catapult_Single</defName>
-		<label>Catapult Single</label>
+		<label>Single Boulder</label>
 		<statBases>
 			<AccuracyTouch>0.79</AccuracyTouch>
 			<AccuracyShort>0.42</AccuracyShort>
@@ -131,7 +135,7 @@
 	</ThingDef>
 	<ThingDef ParentName="Catapult_Weapon">
 		<defName>Catapult_Multi</defName>
-		<label>Catapult Multi</label>
+		<label>Multiple Stones</label>
 		<statBases>
 			<AccuracyTouch>0.79</AccuracyTouch>
 			<AccuracyShort>0.42</AccuracyShort>

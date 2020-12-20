@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-  <FirstGun>Main Mode</FirstGun>
-  <FirstGunDesc>Swaps to the main firing mode. In case of most turrets, it means a singleshot mode.</FirstGunDesc>
-  <SecondGun>Alt Mode</SecondGun>
-  <SecondGunDesc>Swaps to the alternative firing mode. In case of most turrets, it means a multishot mode.</SecondGunDesc>
-  <FirstGunMode>Mode of Fire: Main</FirstGunMode>
-  <SecondGunMode>Mode of Fire: Alternative</SecondGunMode>
+  <ChangeGun>Change Mode</ChangeGun>
+  <ChangeGunDesc>Changes to a different firing mode. Turret needs to reload before firing again.</ChangeGunDesc>
+  <CurrentMode>Current Selected Mode: </CurrentMode>
 </LanguageData>
