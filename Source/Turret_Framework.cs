@@ -13,7 +13,15 @@ namespace RimDungeon
         bool changeGun = false;
         bool changedShell = false;
         int currentGun = 0;
-        
+
+        public void SetRotation()
+        {
+            if(!this.CurrentTarget.IsValid)
+            {
+                this.top.CurRotation = this.Rotation.AsAngle;
+            }
+        }
+
         public override void PostMake()
         {
             base.PostMake();
@@ -78,7 +86,53 @@ namespace RimDungeon
                     changedShell = false;
                 }
             }
+            SetRotation();
+           
         }
+
+
+        public override void DrawExtraSelectionOverlays()
+        {
+            float range = this.AttackVerb.verbProps.range;
+            if (range < 90f)
+            {
+                if (TurretDef.firingArc == 360)
+                {
+                    GenDraw.DrawRadiusRing(base.Position, range);
+                }
+                else
+                {
+                    PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, range, TurretDef.firingArc);
+                }
+            }
+            float num = this.AttackVerb.verbProps.EffectiveMinRange(true);
+            if (num < 90f && num > 0.1f)
+            {
+                GenDraw.DrawRadiusRing(base.Position, num);
+            }
+            if (this.burstWarmupTicksLeft > 0)
+            {
+                int degreesWide = (int)((float)this.burstWarmupTicksLeft * 0.5f);
+                GenDraw.DrawAimPie(this, this.CurrentTarget, degreesWide, (float)this.def.size.x * 0.5f);
+            }
+            if (this.forcedTarget.IsValid && (!this.forcedTarget.HasThing || this.forcedTarget.Thing.Spawned))
+            {
+                Vector3 vector;
+                if (this.forcedTarget.HasThing)
+                {
+                    vector = this.forcedTarget.Thing.TrueCenter();
+                }
+                else
+                {
+                    vector = this.forcedTarget.Cell.ToVector3Shifted();
+                }
+                Vector3 a = this.TrueCenter();
+                vector.y = AltitudeLayer.MetaOverlays.AltitudeFor();
+                a.y = vector.y;
+                GenDraw.DrawLineBetween(a, vector, Building_TurretGun.ForcedTargetLineMat, 0.2f);
+            }
+        }
+
 
         public override IEnumerable<Gizmo> GetGizmos()
         {
