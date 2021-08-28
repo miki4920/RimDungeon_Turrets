@@ -23,7 +23,6 @@ namespace RimDungeon
 
         public static bool Prefix(Building_TurretGun __instance, LocalTargetInfo targ)
         {
-            // Cone of fire check
             if (targ.IsValid && !PublicFunctions.WithinFiringArcOf(__instance.Position,targ.Cell, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc))
             {
                 Messages.Message("MessageTargetBeyondMaximumRange".Translate(), MessageTypeDefOf.RejectInput, false);

@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -28,43 +29,54 @@ namespace RimDungeon
             DetermineGun();
 
         }
-        private void UpdateGunVerbs()
+        public void SetNextGun()
         {
-            List<Verb> allVerbs = this.gun.TryGetComp<CompEquippable>().AllVerbs;
-            for (int i = 0; i < allVerbs.Count; i++)
-            {
-                Verb verb = allVerbs[i];
-                verb.caster = this;
-                verb.castCompleteCallback = new Action(this.BurstComplete);
-            }
-        }
-        public void DetermineGun()
-        {
-            CompChangeableProjectile projectile = null;
-            if (this.gun != null)
-            {
-                projectile = this.gun.TryGetComp<CompChangeableProjectile>();
-            }
-            if (changeGun && currentGun + 1 < TurretDef.guns.Count)
+            if(currentGun + 1 < TurretDef.guns.Count)
             {
                 currentGun += 1;
                 this.gun = ThingMaker.MakeThing(TurretDef.guns[currentGun], null);
                 changeGun = false;
             }
-            
-            else if (changeGun && currentGun + 1 == TurretDef.guns.Count)
+            else
             {
                 currentGun = 0;
                 this.gun = ThingMaker.MakeThing(TurretDef.guns[currentGun], null);
                 changeGun = false;
             }
-            UpdateGunVerbs();
+        }
+
+        public void DetermineGun()
+        {
+            var baseClass = GetType().BaseType;
+            CompChangeableProjectile projectile = null;
+            if (this.gun != null)
+            {
+                projectile = this.gun.TryGetComp<CompChangeableProjectile>();
+            }
+            if (changeGun)
+            {
+                SetNextGun();
+            }
+            MethodInfo updateGunMethod = baseClass.GetMethod("UpdateGunVerbs", BindingFlags.NonPublic | BindingFlags.Instance);
+            updateGunMethod.Invoke(this, new object[] { });
             if (projectile != null && projectile.Loaded && projectile.LoadedShell != this.AttackVerb.verbProps.defaultProjectile)
             {
                 ThingDef shell = projectile.LoadedShell;
                 shell.projectileWhenLoaded = this.AttackVerb.verbProps.defaultProjectile;
                 this.gun.TryGetComp<CompChangeableProjectile>().LoadShell(shell, this.AttackVerb.verbProps.burstShotCount);
             }
+            if(this.CurrentTarget.IsValid)
+            {
+                LocalTargetInfo target = this.CurrentTarget;
+                this.forcedTarget = LocalTargetInfo.Invalid;
+                this.burstWarmupTicksLeft = 0;
+                if (this.burstCooldownTicksLeft <= 0)
+                {
+                    this.TryStartShootSomething(false);
+                }
+                OrderAttack(target);
+            }
+            
             this.burstCooldownTicksLeft = this.BurstCooldownTime().SecondsToTicks();
         }
 
