@@ -1,5 +1,34 @@
 <Defs>
-	<ThingDef Name="BaseDungeonTurret" ParentName="BaseArtilleryBuilding" Abstract="True">
+	<ThingDef Name="BaseDungeonTurret" ParentName="BuildingBase" Abstract="True">
 		<thingClass>RimDungeon.Turret_Framework</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+	<rotatable>true</rotatable>
+	<minifiedDef>MinifiedThing</minifiedDef>
+	<thingCategories>
+      <li>BuildingsSecurity</li>
+    </thingCategories>
+	<tickerType>Normal</tickerType>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.5</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+	<hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+	<comps>
+      <li Class="CompProperties_Forbiddable"/>
+      <li Class="CompProperties_Mannable">
+        <manWorkType>Violent</manWorkType>
+      </li>
+    </comps>
+	    <placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+	  <li>PlaceWorker_PreventInteractionSpotOverlap</li>
+	  <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
 	</ThingDef>
 </Defs>
