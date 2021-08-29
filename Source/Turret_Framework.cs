@@ -150,14 +150,7 @@ namespace RimDungeon
         {
             foreach (Gizmo gizmo in base.GetGizmos())
             {
-                if (!gizmo.ToString().Contains("Extract"))
-                {
-                    yield return gizmo;
-                }
-                else if (gizmo.ToString().Contains("Extract") && TurretDef.guns == null)
-                {
-                    yield return gizmo;
-                }
+                yield return gizmo;
             }
             IEnumerator<Gizmo> enumerator = null;
             if (TurretDef.guns != null && TurretDef.guns.Count > 1)

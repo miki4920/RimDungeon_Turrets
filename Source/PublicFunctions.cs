@@ -14,7 +14,7 @@ namespace RimDungeon
             return GenGeo.AngleDifferenceBetween(rot.AsAngle, (pos_target - position_caster).AngleFlat) <= (firingArc / 2);
         }
 
-        public static bool TryDrawFiringCone(IntVec3 centre, Rot4 rot, float distance, float arc)
+        public static void TryDrawFiringCone(IntVec3 centre, Rot4 rot, float distance, float arc)
         {
             if (arc < 360)
             {
@@ -28,9 +28,7 @@ namespace RimDungeon
                         ringDrawCells.Add(curCell);
                 }
                 GenDraw.DrawFieldEdges(ringDrawCells);
-                return true;
             }
-            return false;
         }
     }
 }
