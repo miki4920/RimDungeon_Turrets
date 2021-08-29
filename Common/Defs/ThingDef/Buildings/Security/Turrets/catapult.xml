@@ -1,37 +1,34 @@
 <Defs>
 	<ThingDef ParentName="BaseDungeonTurret">
-		<defName>Turret_Ballista</defName>
-		<label>ballista turret</label>
+		<defName>CatapultTurret</defName>
+		<label>catapult turret</label>
 		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
-		<size>(1,1)</size>
+		<size>(2,2)</size>
 		<graphicData>
-			<texPath>Things/Building/Ballista/BallistaBase</texPath>
+			<texPath>Things/Building/Catapult/CatapultBase</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(1,1)</drawSize>
+			<drawSize>(3,3)</drawSize>
 		</graphicData>
-		<uiIconPath>Things/Building/Ballista/BallistaTop</uiIconPath>
+		<uiIconPath>Things/Building/Catapult/CatapultTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>0.7</Flammability>
+			<MaxHitPoints>180</MaxHitPoints>
 			<WorkToBuild>1800</WorkToBuild>
-			<Mass>8</Mass>
-			<Beauty>-20</Beauty>
-			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+			<ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
 		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
 			<li>Woody</li>
 		</stuffCategories>
-		<costStuffCount>50</costStuffCount>
+		<costStuffCount>100</costStuffCount>
 		<costList>
-			<WoodLog>100</WoodLog>
+			<WoodLog>50</WoodLog>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
 				<guns>
-					<li>Weapon_BallistaSingle</li>
-					<li>Weapon_BallistaMulti</li>
+					<li>Weapon_CatapultSingle</li>
+					<li>Weapon_CatapultMulti</li>
 				</guns>
 				<firingArc>90</firingArc>
 			</li>
@@ -56,13 +53,10 @@
 				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
 			</li>
 		</comps>
-		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-		<designationCategory>Security</designationCategory>
 		<building>
-			<combatPower>45</combatPower>
-			<ai_combatDangerous>true</ai_combatDangerous>
-			<turretGunDef>Weapon_BallistaSingle</turretGunDef>
+			<turretGunDef>Weapon_CatapultSingle</turretGunDef>
 			<turretBurstCooldownTime>8</turretBurstCooldownTime>
+			<turretTopDrawSize>3</turretTopDrawSize>
 		</building>
 	<researchPrerequisites>
       <li>GunTurrets</li>
@@ -70,10 +64,10 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_BallistaSingle</defName>
-		<label>single shot ballista</label>
+		<defName>Projectile_CatapultSingle</defName>
+		<label>single shot catapult</label>
 		<graphicData>
-			<texPath>Things/Projectile/Pilum</texPath>
+			<texPath>Things/Projectile/Stone</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<thingClass>Projectile_Explosive</thingClass>
@@ -84,54 +78,53 @@
 		</modExtensions>
 		<projectile>
 			<damageDef>Bomb</damageDef>
-			<damageAmountBase>50</damageAmountBase>
+			<damageAmountBase>100</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<stoppingPower>2.5</stoppingPower>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_CatapultMulti</defName>
+		<label>multi shot catapult</label>
+		<graphicData>
+			<texPath>Things/Projectile/Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>10</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Bomb</damageDef>
+			<damageAmountBase>10</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 			<armorPenetrationBase>0.5</armorPenetrationBase>
 			<stoppingPower>2.5</stoppingPower>
 			<speed>75</speed>
 		</projectile>
 	</ThingDef>
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_BallistaMulti</defName>
-		<label>multi shot ballista</label>
-		<graphicData>
-			<texPath>Things/Projectile/Pilum</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>5</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>ArrowHighVelocity</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.1</armorPenetrationBase>
-			<stoppingPower>0.5</stoppingPower>
-			<speed>50</speed>
-		</projectile>
-	</ThingDef>
-	<ThingDef Name="Weapon_Ballista"
+	
+	<ThingDef Name="Weapon_Catapult"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
-		<defName>Weapon_Ballista</defName>
-		<label>Ballista Weapon</label>
 		<description>A powerful bow made to be mounted on a ballista.</description>
-		<graphicData>
-			<graphicClass>Graphic_Single</graphicClass>
-			<texPath>Things/Building/Ballista/BallistaTop</texPath>
-		</graphicData>
 		<statBases>
 			<DeteriorationRate>0</DeteriorationRate>
 			<Mass>5</Mass>
 			<Flammability>0</Flammability>
 		</statBases>
 	</ThingDef>
-	<ThingDef ParentName="Weapon_Ballista">
-		<defName>Weapon_BallistaSingle</defName>
+	
+	<ThingDef ParentName="Weapon_Catapult">
+		<defName>Weapon_CatapultSingle</defName>
 		<label>Armour Piercing Bolt</label>
 		<statBases>
 			<AccuracyTouch>0.75</AccuracyTouch>
@@ -139,21 +132,26 @@
 			<AccuracyMedium>0.96</AccuracyMedium>
 			<AccuracyLong>0.96</AccuracyLong>
 		</statBases>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/Catapult/CatapultTop</texPath>
+			<drawSize>(3,3)</drawSize>
+		</graphicData>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_BallistaSingle</defaultProjectile>
+				<defaultProjectile>Projectile_CatapultSingle</defaultProjectile>
 				<range>45.9</range>
-				<forcedMissRadius>1</forcedMissRadius>
+				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Ballista_Release</soundCast>
 				<consumeFuelPerShot>5</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
-	<ThingDef ParentName="Weapon_Ballista">
-		<defName>Weapon_BallistaMulti</defName>
+	<ThingDef ParentName="Weapon_Catapult">
+		<defName>Weapon_CatapultMulti</defName>
 		<label>Multi-Shot Ammunition</label>
 		<statBases>
 			<AccuracyTouch>0.5</AccuracyTouch>
@@ -161,12 +159,18 @@
 			<AccuracyMedium>0.18</AccuracyMedium>
 			<AccuracyLong>0.06</AccuracyLong>
 		</statBases>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/Catapult/CatapultTop</texPath>
+			<drawSize>(5,5)</drawSize>
+		</graphicData>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_BallistaMulti</defaultProjectile>
-				<range>28.9</range>
+				<defaultProjectile>Projectile_CatapultMulti</defaultProjectile>
+				<range>45.9</range>
+				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Ballista_Release</soundCast>
 				<consumeFuelPerShot>10</consumeFuelPerShot>
