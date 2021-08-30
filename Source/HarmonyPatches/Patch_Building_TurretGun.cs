@@ -9,11 +9,15 @@ namespace RimDungeon
     public static class IsValidTarget
     {
 
-        public static void Postfix(Building_TurretGun __instance, Thing t, ref bool __result)
+        public static bool Prefix(Building_TurretGun __instance, Thing t)
         {
-        if (__result && !PublicFunctions.WithinFiringArcOf(__instance.Position, t.Position, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc));
-                __result = false;
+        if (!PublicFunctions.WithinFiringArcOf(__instance.Position, t.Position, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc))
+            {
+                return false;
+            }
+            return true;
         }
+        
 
     }
 

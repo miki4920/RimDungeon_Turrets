@@ -18,8 +18,11 @@ namespace RimDungeon
             IntVec3 position_caster = __instance.caster.Position;
             IntVec3 position_target = targ.Cell;
             Rot4 rot = __instance.caster.Rotation;
-            float arc = __instance.caster.def.GetModExtension<Turret_Def>().firingArc;
-            __result = __result && PublicFunctions.WithinFiringArcOf(position_caster, position_target, rot, arc);
+            Turret_Def TurretDef = __instance.caster.def.GetModExtension<Turret_Def>();
+            if(TurretDef != null && TurretDef.firingArc != 360)
+            {
+                __result = __result && PublicFunctions.WithinFiringArcOf(position_caster, position_target, rot, TurretDef.firingArc);
+            }
         }
 
     }
