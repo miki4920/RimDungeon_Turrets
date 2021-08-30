@@ -7,20 +7,38 @@ using System.Reflection;
 using RimWorld;
 using Verse;
 using HarmonyLib;
+using System.Runtime.CompilerServices;
 
 namespace RimDungeon
 {
-    [HarmonyPatch(typeof(Verb_Shoot), "TryCastShot")]
+    [HarmonyPatch]
     public static class TryCastShot
     {
-        public static bool Postfix(Verb_Shoot __instance, ref bool __result)
+        [HarmonyReversePatch]
+        [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        static bool BaseMethodDummy(Verb_Shoot instance)
         {
-            var baseClass = __instance.GetType();
-            MethodInfo tryCastShotMethod = baseClass.GetMethod("tryCastShot", BindingFlags.NonPublic | BindingFlags.Instance);
-            Log.Message(tryCastShotMethod.ToString());
-            Log.Message("Hello There!");
-            
-            return true;
+            return false;
+        }
+
+        [HarmonyPatch(typeof(Verb_Shoot), "TryCastShot")]
+        static bool Prefix(Verb_Shoot __instance, ref bool __result)
+        {
+            var castedShot = BaseMethodDummy(__instance);
+            if(__instance.verbProps.defaultProjectile.HasModExtension<Projectile_Def>()) 
+            {
+                int projectileCount = __instance.verbProps.defaultProjectile.GetModExtension<Projectile_Def>().shotCount;
+                if (castedShot && projectileCount - 1 > 0)
+                {
+                    for (int i = 0; i < projectileCount - 1; i++)
+                    {
+                        BaseMethodDummy(__instance);
+                    }
+                }
+            }
+            __result = castedShot;
+            return false;
         }
 
     }
