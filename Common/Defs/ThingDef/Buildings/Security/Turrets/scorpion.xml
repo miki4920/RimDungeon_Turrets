@@ -1,13 +1,13 @@
 <Defs>
 	<ThingDef ParentName="BaseDungeonTurret">
-		<defName>Turret_Ballista</defName>
-		<label>ballista turret</label>
+		<defName>Turret_Scorpion</defName>
+		<label>scorpion turret</label>
 		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
-		<size>(3,3)</size>
+		<size>(1,1)</size>
 		<graphicData>
 			<texPath>Things/Building/Ballista/BallistaBase</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(3,3)</drawSize>
+			<drawSize>(1,1)</drawSize>
 		</graphicData>
 		<uiIconPath>Things/Building/Ballista/BallistaTop</uiIconPath>
 		<statBases>
@@ -16,7 +16,7 @@
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>8</Mass>
 			<Beauty>-20</Beauty>
-			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+			<ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
 		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
@@ -30,8 +30,7 @@
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
 				<guns>
-					<li>Weapon_BallistaSingle</li>
-					<li>Weapon_BallistaMulti</li>
+					<li>Weapon_ScorpionSingle</li>
 				</guns>
 				<firingArc>120</firingArc>
 			</li>
@@ -61,9 +60,9 @@
 		<building>
 			<combatPower>45</combatPower>
 			<ai_combatDangerous>true</ai_combatDangerous>
-			<turretGunDef>Weapon_BallistaSingle</turretGunDef>
-			<turretBurstCooldownTime>8</turretBurstCooldownTime>
-			<turretTopDrawSize>3</turretTopDrawSize>
+			<turretGunDef>Weapon_ScorpionSingle</turretGunDef>
+			<turretBurstCooldownTime>1</turretBurstCooldownTime>
+			<turretTopDrawSize>1.5</turretTopDrawSize>
 		</building>
 	<researchPrerequisites>
       <li>GunTurrets</li>
@@ -71,30 +70,8 @@
 	</ThingDef>
 	
 	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_BallistaSingle</defName>
-		<label>single shot ballista</label>
-		<graphicData>
-			<texPath>Things/Projectile/Pilum</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingClass>Projectile_Explosive</thingClass>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>1</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>50</damageAmountBase>
-			<explosionRadius>0.5</explosionRadius>
-			<armorPenetrationBase>0.5</armorPenetrationBase>
-			<stoppingPower>2.5</stoppingPower>
-			<speed>75</speed>
-		</projectile>
-	</ThingDef>
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_BallistaMulti</defName>
-		<label>multi shot ballista</label>
+		<defName>Projectile_ScorpionSingle</defName>
+		<label>single shot scorpion</label>
 		<graphicData>
 			<texPath>Things/Projectile/Pilum</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -104,7 +81,7 @@
 		</thingCategories>
 		<modExtensions>
 			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>5</shotCount>
+				<shotCount>1</shotCount>
 			</li>
 		</modExtensions>
 		<projectile>
@@ -115,25 +92,9 @@
 			<speed>50</speed>
 		</projectile>
 	</ThingDef>
-	<ThingDef Name="Weapon_Ballista"
-        		ParentName="BaseWeaponTurret"
-        		Abstract="True">
-		<defName>Weapon_Ballista</defName>
-		<label>Ballista Weapon</label>
-		<description>A powerful bow made to be mounted on a ballista.</description>
-		<graphicData>
-			<graphicClass>Graphic_Single</graphicClass>
-			<texPath>Things/Building/Ballista/BallistaTop</texPath>
-		</graphicData>
-		<statBases>
-			<DeteriorationRate>0</DeteriorationRate>
-			<Mass>5</Mass>
-			<Flammability>0</Flammability>
-		</statBases>
-	</ThingDef>
 	<ThingDef ParentName="Weapon_Ballista">
-		<defName>Weapon_BallistaSingle</defName>
-		<label>Armour Piercing Bolt</label>
+		<defName>Weapon_ScorpionSingle</defName>
+		<label>Single-Shot Ammunition</label>
 		<statBases>
 			<AccuracyTouch>0.75</AccuracyTouch>
 			<AccuracyShort>0.96</AccuracyShort>
@@ -143,35 +104,13 @@
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_BallistaSingle</defaultProjectile>
-				<range>45.9</range>
-				<forcedMissRadius>1</forcedMissRadius>
-				<burstShotCount>1</burstShotCount>
-				<soundCast>Ballista_Release</soundCast>
-				<consumeFuelPerShot>5</consumeFuelPerShot>
-			</li>
-		</verbs>
-	</ThingDef>
-	<ThingDef ParentName="Weapon_Ballista">
-		<defName>Weapon_BallistaMulti</defName>
-		<label>Multi-Shot Ammunition</label>
-		<statBases>
-			<AccuracyTouch>0.5</AccuracyTouch>
-			<AccuracyShort>0.42</AccuracyShort>
-			<AccuracyMedium>0.18</AccuracyMedium>
-			<AccuracyLong>0.06</AccuracyLong>
-		</statBases>
-		<verbs>
-			<li>
-				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_BallistaMulti</defaultProjectile>
+				<defaultProjectile>Projectile_ScorpionSingle</defaultProjectile>
 				<range>28.9</range>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Ballista_Release</soundCast>
-				<consumeFuelPerShot>10</consumeFuelPerShot>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
-</Defs>
+	</Defs>

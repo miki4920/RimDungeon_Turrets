@@ -30,7 +30,7 @@
 					<li>Weapon_CatapultSingle</li>
 					<li>Weapon_CatapultMulti</li>
 				</guns>
-				<firingArc>90</firingArc>
+				<firingArc>120</firingArc>
 			</li>
 		</modExtensions>
 		<comps>
