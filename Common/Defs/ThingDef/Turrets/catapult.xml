@@ -63,55 +63,6 @@
     </researchPrerequisites>
 	</ThingDef>
 	
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_CatapultSingle</defName>
-		<label>single shot catapult</label>
-		<graphicData>
-			<texPath>Things/Projectile/Stone</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingClass>Projectile_Explosive</thingClass>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>1</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>100</damageAmountBase>
-			<explosionRadius>1.5</explosionRadius>
-			<armorPenetrationBase>0.5</armorPenetrationBase>
-			<stoppingPower>2.5</stoppingPower>
-			<speed>75</speed>
-		</projectile>
-	</ThingDef>
-	
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_CatapultMulti</defName>
-		<label>multi shot catapult</label>
-		<graphicData>
-			<texPath>Things/Projectile/Stone</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingClass>Projectile_Explosive</thingClass>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>10</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<explosionRadius>0.5</explosionRadius>
-			<armorPenetrationBase>0.5</armorPenetrationBase>
-			<stoppingPower>2.5</stoppingPower>
-			<speed>75</speed>
-		</projectile>
-	</ThingDef>
-	
 	<ThingDef Name="Weapon_Catapult"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
@@ -135,17 +86,16 @@
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
 			<texPath>Things/Building/Catapult/CatapultTop</texPath>
-			<drawSize>(3,3)</drawSize>
 		</graphicData>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_CatapultSingle</defaultProjectile>
+				<defaultProjectile>Projectile_RimDungeonStoneExplosive</defaultProjectile>
 				<range>45.9</range>
 				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
-				<soundCast>Ballista_Release</soundCast>
+				<soundCast>Stone_Release</soundCast>
 				<consumeFuelPerShot>5</consumeFuelPerShot>
 			</li>
 		</verbs>
@@ -162,17 +112,16 @@
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
 			<texPath>Things/Building/Catapult/CatapultTop</texPath>
-			<drawSize>(5,5)</drawSize>
 		</graphicData>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_CatapultMulti</defaultProjectile>
+				<defaultProjectile>Projectile_RimDungeonStoneSmall</defaultProjectile>
 				<range>45.9</range>
 				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
-				<soundCast>Ballista_Release</soundCast>
+				<soundCast>Stone_Release</soundCast>
 				<consumeFuelPerShot>10</consumeFuelPerShot>
 			</li>
 		</verbs>

@@ -16,7 +16,7 @@
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>8</Mass>
 			<Beauty>-20</Beauty>
-			<ShootingAccuracyTurret>0.99</ShootingAccuracyTurret>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
 		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
@@ -32,7 +32,7 @@
 				<guns>
 					<li>Weapon_ScorpionSingle</li>
 				</guns>
-				<firingArc>120</firingArc>
+				<firingArc>60</firingArc>
 			</li>
 		</modExtensions>
 		<comps>
@@ -61,54 +61,31 @@
 			<combatPower>45</combatPower>
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>Weapon_ScorpionSingle</turretGunDef>
-			<turretBurstCooldownTime>1</turretBurstCooldownTime>
-			<turretTopDrawSize>1.5</turretTopDrawSize>
+			<turretBurstCooldownTime>1.5</turretBurstCooldownTime>
+			<turretTopDrawSize>1</turretTopDrawSize>
 		</building>
 	<researchPrerequisites>
       <li>GunTurrets</li>
     </researchPrerequisites>
 	</ThingDef>
 	
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_ScorpionSingle</defName>
-		<label>single shot scorpion</label>
-		<graphicData>
-			<texPath>Things/Projectile/Pilum</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>1</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>ArrowHighVelocity</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.1</armorPenetrationBase>
-			<stoppingPower>0.5</stoppingPower>
-			<speed>50</speed>
-		</projectile>
-	</ThingDef>
 	<ThingDef ParentName="Weapon_Ballista">
 		<defName>Weapon_ScorpionSingle</defName>
-		<label>Single-Shot Ammunition</label>
+		<label>Single Bolt</label>
 		<statBases>
-			<AccuracyTouch>0.75</AccuracyTouch>
-			<AccuracyShort>0.96</AccuracyShort>
-			<AccuracyMedium>0.96</AccuracyMedium>
-			<AccuracyLong>0.96</AccuracyLong>
+			<AccuracyTouch>0.25</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.45</AccuracyLong>
 		</statBases>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_ScorpionSingle</defaultProjectile>
-				<range>28.9</range>
+				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeon_BoltSmall</defaultProjectile>
+				<range>45.9</range>
 				<burstShotCount>1</burstShotCount>
-				<soundCast>Ballista_Release</soundCast>
+				<soundCast>Bolt_Release</soundCast>
 				<consumeFuelPerShot>1</consumeFuelPerShot>
 			</li>
 		</verbs>

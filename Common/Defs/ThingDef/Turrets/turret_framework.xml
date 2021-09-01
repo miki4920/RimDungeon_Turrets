@@ -5,14 +5,10 @@
 		<altitudeLayer>Building</altitudeLayer>
     <stealable>false</stealable>
 	<rotatable>true</rotatable>
-	<minifiedDef>MinifiedThing</minifiedDef>
-	<thingCategories>
-      <li>BuildingsSecurity</li>
-    </thingCategories>
 	<tickerType>Normal</tickerType>
     <passability>PassThroughOnly</passability>
     <pathCost>50</pathCost>
-    <fillPercent>0.5</fillPercent>
+    <fillPercent>0.99</fillPercent>
     <hasTooltip>true</hasTooltip>
     <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
     <designationCategory>Security</designationCategory>

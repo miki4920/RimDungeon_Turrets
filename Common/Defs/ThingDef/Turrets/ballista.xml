@@ -3,7 +3,7 @@
 		<defName>Turret_Ballista</defName>
 		<label>ballista turret</label>
 		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
-		<size>(3,3)</size>
+		<size>(2,2)</size>
 		<graphicData>
 			<texPath>Things/Building/Ballista/BallistaBase</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -24,7 +24,7 @@
 		</stuffCategories>
 		<costStuffCount>50</costStuffCount>
 		<costList>
-			<WoodLog>100</WoodLog>
+			<WoodLog>150</WoodLog>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
@@ -62,7 +62,7 @@
 			<combatPower>45</combatPower>
 			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>Weapon_BallistaSingle</turretGunDef>
-			<turretBurstCooldownTime>8</turretBurstCooldownTime>
+			<turretBurstCooldownTime>5.01</turretBurstCooldownTime>
 			<turretTopDrawSize>3</turretTopDrawSize>
 		</building>
 	<researchPrerequisites>
@@ -70,51 +70,6 @@
     </researchPrerequisites>
 	</ThingDef>
 	
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_BallistaSingle</defName>
-		<label>single shot ballista</label>
-		<graphicData>
-			<texPath>Things/Projectile/Pilum</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingClass>Projectile_Explosive</thingClass>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>1</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>Bomb</damageDef>
-			<damageAmountBase>50</damageAmountBase>
-			<explosionRadius>0.5</explosionRadius>
-			<armorPenetrationBase>0.5</armorPenetrationBase>
-			<stoppingPower>2.5</stoppingPower>
-			<speed>75</speed>
-		</projectile>
-	</ThingDef>
-	<ThingDef ParentName="BaseBullet">
-		<defName>Projectile_BallistaMulti</defName>
-		<label>multi shot ballista</label>
-		<graphicData>
-			<texPath>Things/Projectile/Pilum</texPath>
-			<graphicClass>Graphic_Single</graphicClass>
-		</graphicData>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
-		<modExtensions>
-			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>5</shotCount>
-			</li>
-		</modExtensions>
-		<projectile>
-			<damageDef>ArrowHighVelocity</damageDef>
-			<damageAmountBase>10</damageAmountBase>
-			<armorPenetrationBase>0.1</armorPenetrationBase>
-			<stoppingPower>0.5</stoppingPower>
-			<speed>50</speed>
-		</projectile>
-	</ThingDef>
 	<ThingDef Name="Weapon_Ballista"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
@@ -131,9 +86,10 @@
 			<Flammability>0</Flammability>
 		</statBases>
 	</ThingDef>
+	
 	<ThingDef ParentName="Weapon_Ballista">
 		<defName>Weapon_BallistaSingle</defName>
-		<label>Armour Piercing Bolt</label>
+		<label>Explosive Bolt</label>
 		<statBases>
 			<AccuracyTouch>0.75</AccuracyTouch>
 			<AccuracyShort>0.96</AccuracyShort>
@@ -144,33 +100,33 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_BallistaSingle</defaultProjectile>
+				<defaultProjectile>Projectile_RimDungeon_BoltExplosive</defaultProjectile>
 				<range>45.9</range>
 				<forcedMissRadius>1</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
-				<soundCast>Ballista_Release</soundCast>
+				<soundCast>Stone_Release</soundCast>
 				<consumeFuelPerShot>5</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
 	<ThingDef ParentName="Weapon_Ballista">
 		<defName>Weapon_BallistaMulti</defName>
-		<label>Multi-Shot Ammunition</label>
+		<label>Multi-Shot Bolts</label>
 		<statBases>
-			<AccuracyTouch>0.5</AccuracyTouch>
-			<AccuracyShort>0.42</AccuracyShort>
-			<AccuracyMedium>0.18</AccuracyMedium>
-			<AccuracyLong>0.06</AccuracyLong>
+			<AccuracyTouch>0.25</AccuracyTouch>
+			<AccuracyShort>0.65</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.45</AccuracyLong>
 		</statBases>
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_BallistaMulti</defaultProjectile>
-				<range>28.9</range>
-				<burstShotCount>1</burstShotCount>
-				<soundCast>Ballista_Release</soundCast>
-				<consumeFuelPerShot>10</consumeFuelPerShot>
+				<ticksBetweenBurstShots>30</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeon_BoltSmall_Multishot</defaultProjectile>
+				<range>45.9</range>
+				<burstShotCount>3</burstShotCount>
+				<soundCast>Bolt_Release</soundCast>
+				<consumeFuelPerShot>5</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
