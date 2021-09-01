@@ -1,0 +1,65 @@
+<Defs>
+<SoundDef>
+    <defName>Bolt_Impact</defName>  
+    <context>MapOnly</context>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Bolt_Impact</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>60.70111~70.30627</volumeRange>      
+        <pitchRange>0.6976015~0.7769372</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  
+  <SoundDef>
+    <defName>Bolt_Release</defName>  
+    <context>MapOnly</context>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Bolt_Release</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>90.70111~100.30627</volumeRange>      
+        <pitchRange>0.6976015~0.7769372</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  
+  <SoundDef>
+    <defName>Stone_Release</defName>  
+    <context>MapOnly</context>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Stone_Release</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>40.70111~50.30627</volumeRange>      
+        <pitchRange>0.6976015~0.7769372</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+  
+  <SoundDef>
+    <defName>Stone_Impact</defName>  
+    <context>MapOnly</context>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Stone_Impact</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>40.70111~50.30627</volumeRange>      
+        <pitchRange>0.6976015~0.7769372</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+ </Defs>
