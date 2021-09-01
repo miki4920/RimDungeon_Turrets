@@ -1,0 +1,69 @@
+<Defs>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeon_BoltExplosive</defName>
+		<label>explosive bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Pilum</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>1</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Stone</damageDef>
+			<damageAmountBase>50</damageAmountBase>
+			<explosionRadius>1</explosionRadius>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<stoppingPower>2.5</stoppingPower>
+			<speed>50</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeon_BoltSmall</defName>
+		<label>small single bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Pilum</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<projectile>
+			<damageDef>ArrowHighVelocity</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.1</armorPenetrationBase>
+			<stoppingPower>0.5</stoppingPower>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeon_BoltSmall_Multishot</defName>
+		<label>small multi bolt</label>
+		<graphicData>
+			<texPath>Things/Projectile/Pilum</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>5</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>ArrowHighVelocity</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<armorPenetrationBase>0.1</armorPenetrationBase>
+			<stoppingPower>0.5</stoppingPower>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+	
+
+</Defs>

@@ -1,0 +1,50 @@
+<Defs>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeonStoneExplosive</defName>
+		<label>single shot catapult</label>
+		<graphicData>
+			<texPath>Things/Projectile/Large_Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>1</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Stone</damageDef>
+			<damageAmountBase>100</damageAmountBase>
+			<explosionRadius>1.5</explosionRadius>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<stoppingPower>2.5</stoppingPower>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeonStoneSmall</defName>
+		<label>multi shot catapult</label>
+		<graphicData>
+			<texPath>Things/Projectile/Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<thingClass>Projectile_Explosive</thingClass>
+		<thingCategories>
+			<li>WeaponsRanged</li>
+		</thingCategories>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>10</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Stone</damageDef>
+			<damageAmountBase>20</damageAmountBase>
+			<explosionRadius>0.5</explosionRadius>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<stoppingPower>2.5</stoppingPower>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+</Defs>
