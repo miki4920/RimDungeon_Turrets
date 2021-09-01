@@ -1,0 +1,7 @@
+<Defs>
+	 <DamageDef ParentName="Bomb">
+    <defName>Stone</defName>
+	<deathMessage>{0} has died due to a stone projectile.</deathMessage>
+	<soundExplosion>Stone_Impact</soundExplosion>
+  </DamageDef>
+</Defs>
