@@ -9,13 +9,12 @@ namespace RimDungeon
     public static class IsValidTarget
     {
 
-        public static bool Prefix(Building_TurretGun __instance, Thing t)
+        public static void Postfix(Building_TurretGun __instance, Thing t, ref bool __result)
         {
-        if (!PublicFunctions.WithinFiringArcOf(__instance.Position, t.Position, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc))
+            if (__result && !PublicFunctions.WithinFiringArcOf(t.Position, __instance.Position, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc))
             {
-                return false;
+                __result = false;
             }
-            return true;
         }
         
 
@@ -27,7 +26,7 @@ namespace RimDungeon
 
         public static bool Prefix(Building_TurretGun __instance, LocalTargetInfo targ)
         {
-            if (targ.IsValid && !PublicFunctions.WithinFiringArcOf(__instance.Position,targ.Cell, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc))
+            if (targ.IsValid && !PublicFunctions.WithinFiringArcOf(targ.Cell, __instance.Position, __instance.Rotation, Turret_Def.Get(__instance.def).firingArc))
             {
                 Messages.Message("MessageTargetBeyondMaximumRange".Translate(), MessageTypeDefOf.RejectInput, false);
                 return false;

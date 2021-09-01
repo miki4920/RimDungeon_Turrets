@@ -9,9 +9,9 @@ namespace RimDungeon
 {
     class PublicFunctions
     {
-        public static bool WithinFiringArcOf(IntVec3 position_caster, IntVec3 pos_target, Rot4 rot, float firingArc)
+        public static bool WithinFiringArcOf(IntVec3 pos_target, IntVec3 position_caster, Rot4 rot, float firingArc)
         {
-            return GenGeo.AngleDifferenceBetween(rot.AsAngle, (pos_target - position_caster).AngleFlat) <= (firingArc / 2);
+            return GenGeo.AngleDifferenceBetween(rot.AsAngle, (pos_target - position_caster).AngleFlat) <= (firingArc/2);
         }
 
         public static void TryDrawFiringCone(IntVec3 centre, Rot4 rot, float distance, float arc)
@@ -24,7 +24,7 @@ namespace RimDungeon
                 for (int i = 0; i < num; i++)
                 {
                     var curCell = centre + GenRadial.RadialPattern[i];
-                    if (PublicFunctions.WithinFiringArcOf(centre, curCell, rot, arc))
+                    if (PublicFunctions.WithinFiringArcOf(curCell, centre, rot, arc))
                         ringDrawCells.Add(curCell);
                 }
                 GenDraw.DrawFieldEdges(ringDrawCells);
