@@ -1,4 +1,4 @@
-<Defs>
+<Defs>	
 	<ThingDef ParentName="BaseBullet">
 		<defName>Projectile_RimDungeonStoneExplosive</defName>
 		<label>single shot catapult</label>
@@ -29,15 +29,12 @@
 			<texPath>Things/Projectile/Stone</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
-		<thingClass>Projectile_Explosive</thingClass>
-		<thingCategories>
-			<li>WeaponsRanged</li>
-		</thingCategories>
 		<modExtensions>
 			<li Class="RimDungeon.Projectile_Def">
 				<shotCount>10</shotCount>
 			</li>
 		</modExtensions>
+		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
 			<damageDef>Stone</damageDef>
 			<damageAmountBase>20</damageAmountBase>
