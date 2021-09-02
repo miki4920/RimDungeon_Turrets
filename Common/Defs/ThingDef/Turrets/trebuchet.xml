@@ -1,80 +1,70 @@
+
 <Defs>
 	<ThingDef ParentName="BaseDungeonTurret">
-		<defName>CatapultTurret</defName>
-		<label>catapult turret</label>
+		<defName>Turret_Trebuchet</defName>
+		<label>trebuchet turret</label>
 		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
-		<size>(2,2)</size>
+		<size>(3,3)</size>
+		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
 		<graphicData>
-			<texPath>Things/Building/Catapult/CatapultBase</texPath>
+			<texPath>Things/Building/Trebuchet/TrebuchetBase</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
-			<drawSize>(3,3)</drawSize>
+			<drawSize>(4,4)</drawSize>
 		</graphicData>
-		<uiIconPath>Things/Building/Catapult/CatapultTop</uiIconPath>
+		<uiIconPath>Things/Building/Trebuchet/TrebuchetTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>180</MaxHitPoints>
+			<MaxHitPoints>100</MaxHitPoints>
+			<Flammability>0.7</Flammability>
 			<WorkToBuild>1800</WorkToBuild>
-			<ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
+			<Mass>8</Mass>
+			<Beauty>-20</Beauty>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
 		</statBases>
 		<stuffCategories>
 			<li>Metallic</li>
 			<li>Woody</li>
 		</stuffCategories>
-		<costStuffCount>100</costStuffCount>
+		<costStuffCount>50</costStuffCount>
 		<costList>
-			<WoodLog>50</WoodLog>
+			<WoodLog>150</WoodLog>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
+				<firingArc>60</firingArc>
 				<guns>
-					<li>Weapon_CatapultSingle</li>
-					<li>Weapon_CatapultMulti</li>
+					<li>Weapon_TrebuchetSingle</li>
+					<li>Weapon_TrebuchetMulti</li>
 				</guns>
-				<firingArc>120</firingArc>
 			</li>
 		</modExtensions>
-		<comps>
-			<li Class="CompProperties_Refuelable">
-				<fuelLabel>Bolts until rearm</fuelLabel>
-				<fuelGizmoLabel>Wooden Bolts</fuelGizmoLabel>
-				<outOfFuelMessage>Cannot shoot: No wood for bolts</outOfFuelMessage>
-				<fuelFilter>
-					<thingDefs>
-						<li>WoodLog</li>
-					</thingDefs>
-				</fuelFilter>
-				<fuelCapacity>100</fuelCapacity>
-				<fuelMultiplier>1</fuelMultiplier>
-				<initialFuelPercent>1</initialFuelPercent>
-				<autoRefuelPercent>0.25</autoRefuelPercent>
-				<showFuelGizmo>true</showFuelGizmo>
-				<minimumFueledThreshold>1</minimumFueledThreshold>
-				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
-				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
-			</li>
-		</comps>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<designationCategory>Security</designationCategory>
 		<building>
-			<turretGunDef>Weapon_CatapultSingle</turretGunDef>
-			<turretBurstCooldownTime>8</turretBurstCooldownTime>
+			<combatPower>45</combatPower>
+			<ai_combatDangerous>true</ai_combatDangerous>
+			<turretGunDef>Weapon_TrebuchetSingle</turretGunDef>
+			<turretBurstCooldownTime>5.01</turretBurstCooldownTime>
 			<turretTopDrawSize>3</turretTopDrawSize>
 		</building>
-		<inspectorTabs>
+				<inspectorTabs>
 			<li>ITab_Shells</li>
 		</inspectorTabs>
-	<researchPrerequisites>
-      <li>GunTurrets</li>
-    </researchPrerequisites>
+		<researchPrerequisites>
+			<li>GunTurrets</li>
+		</researchPrerequisites>
 	</ThingDef>
 	
-	<ThingDef Name="Weapon_Catapult"
+	<ThingDef Name="Weapon_Trebuchet"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
+		<defName>Weapon_Trebuchet</defName>
+		<label>Ballista Weapon</label>
 		<description>A powerful bow made to be mounted on a ballista.</description>
-		<statBases>
-			<DeteriorationRate>0</DeteriorationRate>
-			<Mass>5</Mass>
-			<Flammability>0</Flammability>
-		</statBases>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/Trebuchet/TrebuchetTop</texPath>
+		</graphicData>
 		<building>
 			<buildingTags>
 				<li>Artillery</li>
@@ -97,10 +87,15 @@
 		<comps>
 			<li Class="CompProperties_ChangeableProjectile"/>
 		</comps>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>5</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
 	</ThingDef>
 	
-	<ThingDef ParentName="Weapon_Catapult">
-		<defName>Weapon_CatapultSingle</defName>
+	<ThingDef ParentName="Weapon_Trebuchet">
+		<defName>Weapon_TrebuchetSingle</defName>
 		<label>Armour Piercing Bolt</label>
 		<statBases>
 			<AccuracyTouch>0.75</AccuracyTouch>
@@ -110,7 +105,7 @@
 		</statBases>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
-			<texPath>Things/Building/Catapult/CatapultTop</texPath>
+			<texPath>Things/Building/Trebuchet/TrebuchetTop</texPath>
 		</graphicData>
 		<verbs>
 			<li>
@@ -125,8 +120,8 @@
 			</li>
 		</verbs>
 	</ThingDef>
-	<ThingDef ParentName="Weapon_Catapult">
-		<defName>Weapon_CatapultMulti</defName>
+	<ThingDef ParentName="Weapon_Trebuchet">
+		<defName>Weapon_TrebuchetMulti</defName>
 		<label>Multi-Shot Ammunition</label>
 		<statBases>
 			<AccuracyTouch>0.5</AccuracyTouch>
@@ -136,7 +131,7 @@
 		</statBases>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
-			<texPath>Things/Building/Catapult/CatapultTop</texPath>
+			<texPath>Things/Building/Trebuchet/TrebuchetTop</texPath>
 		</graphicData>
 		<verbs>
 			<li>
