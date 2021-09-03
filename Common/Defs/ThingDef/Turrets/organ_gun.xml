@@ -1,0 +1,92 @@
+<Defs>
+	<ThingDef ParentName="BaseDungeonTurret">
+		<defName>OrganGunTurret</defName>
+		<label>organ gun turret</label>
+		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
+		<size>(2,2)</size>
+		<graphicData>
+			<texPath>Things/Building/OrganGun/OrganGunBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+		</graphicData>
+		<uiIconPath>Things/Building/OrganGun/OrganGunTop</uiIconPath>
+		<statBases>
+			<MaxHitPoints>180</MaxHitPoints>
+			<WorkToBuild>1800</WorkToBuild>
+			<ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
+		</statBases>
+		<costList>
+			<WoodLog>50</WoodLog>
+		</costList>
+		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+		<modExtensions>
+			<li Class="RimDungeon.Turret_Def">
+				<firingArc>120</firingArc>
+			</li>
+		</modExtensions>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Bolts until rearm</fuelLabel>
+				<fuelGizmoLabel>Wooden Bolts</fuelGizmoLabel>
+				<outOfFuelMessage>Cannot shoot: No wood for bolts</outOfFuelMessage>
+				<fuelFilter>
+					<thingDefs>
+						<li>WoodLog</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>100</fuelCapacity>
+				<fuelMultiplier>1</fuelMultiplier>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.25</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<building>
+			<turretGunDef>Weapon_OrganGunSingle</turretGunDef>
+			<turretBurstCooldownTime>8</turretBurstCooldownTime>
+			<turretTopDrawSize>3</turretTopDrawSize>
+		</building>
+	<researchPrerequisites>
+      <li>GunTurrets</li>
+    </researchPrerequisites>
+	</ThingDef>
+	
+	<ThingDef Name="Weapon_OrganGun"
+        		ParentName="BaseWeaponTurret"
+        		Abstract="True">
+		<description>A powerful bow made to be mounted on a ballista.</description>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>5</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+	</ThingDef>
+	
+	<ThingDef ParentName="Weapon_OrganGun">
+		<defName>Weapon_OrganGunSingle</defName>
+		<label>Armour Piercing Bolt</label>
+		<statBases>
+			<AccuracyTouch>0.75</AccuracyTouch>
+			<AccuracyShort>0.96</AccuracyShort>
+			<AccuracyMedium>0.96</AccuracyMedium>
+			<AccuracyLong>0.96</AccuracyLong>
+		</statBases>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/OrganGun/OrganGunTop</texPath>
+		</graphicData>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeon_BoltExplosive</defaultProjectile>
+				<range>45.9</range>
+				<burstShotCount>15</burstShotCount>
+				<soundCast>Stone_Release</soundCast>
+			</li>
+		</verbs>
+	</ThingDef>
+</Defs>
