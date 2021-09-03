@@ -114,13 +114,15 @@ namespace RimDungeon
                 }
                 else
                 {
-                    PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, range, TurretDef.firingArc);
+                    if(range > 0)
+                    {
+                        PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, range, TurretDef.firingArc);
+                    }
+                    if(this.AttackVerb.verbProps.minRange > 0 && this.AttackVerb.verbProps.minRange < range)
+                    {
+                        PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, this.AttackVerb.verbProps.minRange, TurretDef.firingArc);
+                    }
                 }
-            }
-            float num = this.AttackVerb.verbProps.EffectiveMinRange(true);
-            if (num < 90f && num > 0.1f)
-            {
-                GenDraw.DrawRadiusRing(base.Position, num);
             }
             if (this.burstWarmupTicksLeft > 0)
             {
@@ -181,6 +183,7 @@ namespace RimDungeon
             if (TurretDef.guns != null)
             {
                 stringBuilder.AppendLine("CurrentMode".Translate() + TurretDef.guns[currentGun].label);
+                stringBuilder.AppendLine("Description".Translate() + ": " + TurretDef.guns[currentGun].description);
             }
             return stringBuilder.ToString().TrimEndNewlines();
         }

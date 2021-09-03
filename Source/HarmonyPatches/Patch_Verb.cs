@@ -37,7 +37,15 @@ namespace RimDungeon
             {
                 return true;
             }
-            PublicFunctions.TryDrawFiringCone(__instance.caster.Position, __instance.caster.Rotation, __instance.verbProps.range, arc);
+            if(__instance.verbProps.range > 0)
+            {
+                PublicFunctions.TryDrawFiringCone(__instance.caster.Position, __instance.caster.Rotation, __instance.verbProps.range, arc);
+            }
+            if(__instance.verbProps.minRange > 0)
+            {
+                PublicFunctions.TryDrawFiringCone(__instance.caster.Position, __instance.caster.Rotation, __instance.verbProps.minRange, arc);
+            }
+            
             if (target.IsValid)
             {
                 var baseClass = __instance.GetType();
