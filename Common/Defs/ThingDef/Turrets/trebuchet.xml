@@ -3,7 +3,9 @@
 	<ThingDef ParentName="BaseDungeonTurret">
 		<defName>Turret_Trebuchet</defName>
 		<label>trebuchet turret</label>
-		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
+		<description>A trebuchet is a powerful catapult that throws its
+payload in a high arc, so it can hit targets behind cover.
+Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to its size, the trebuchet is capable of firing anywhere on the map.</description>
 		<size>(3,3)</size>
 		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
 		<graphicData>
@@ -13,57 +15,57 @@
 		</graphicData>
 		<uiIconPath>Things/Building/Trebuchet/TrebuchetTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>0.7</Flammability>
-			<WorkToBuild>1800</WorkToBuild>
-			<Mass>8</Mass>
+			<MaxHitPoints>800</MaxHitPoints>
+			<Flammability>0.5</Flammability>
+			<WorkToBuild>7200</WorkToBuild>
+			<Mass>50</Mass>
 			<Beauty>-20</Beauty>
 			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
 		</statBases>
+		<stuffCategories>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>50</costStuffCount>
 		<costList>
 			<WoodLog>150</WoodLog>
+			<Steel>100</Steel>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
-				<firingArc>60</firingArc>
+				<firingArc>120</firingArc>
 				<guns>
 					<li>Weapon_TrebuchetSingle</li>
 					<li>Weapon_TrebuchetMulti</li>
 				</guns>
 			</li>
 		</modExtensions>
-		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-		<designationCategory>Security</designationCategory>
 		<building>
-			<combatPower>45</combatPower>
-			<ai_combatDangerous>true</ai_combatDangerous>
 			<turretGunDef>Weapon_TrebuchetSingle</turretGunDef>
-			<turretBurstCooldownTime>5.01</turretBurstCooldownTime>
+			<turretBurstWarmupTime>4.0</turretBurstWarmupTime>
+			<turretBurstCooldownTime>28.0</turretBurstCooldownTime>
 			<turretTopDrawSize>3</turretTopDrawSize>
 		</building>
 				<inspectorTabs>
 			<li>ITab_Shells</li>
 		</inspectorTabs>
-		<researchPrerequisites>
-			<li>GunTurrets</li>
-		</researchPrerequisites>
 	</ThingDef>
 	
 	<ThingDef Name="Weapon_Trebuchet"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
 		<defName>Weapon_Trebuchet</defName>
-		<label>Ballista Weapon</label>
-		<description>A powerful bow made to be mounted on a ballista.</description>
+		<description>An arm of a trebuchet. Used to launch 90 kg projectiles over 300 metres.</description>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
 			<texPath>Things/Building/Trebuchet/TrebuchetTop</texPath>
 		</graphicData>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>25</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
 		<building>
-			<buildingTags>
-				<li>Artillery</li>
-			</buildingTags>
 			<fixedStorageSettings>
 				<filter>
 					<categories>
@@ -71,22 +73,10 @@
 					</categories>
 				</filter>
 			</fixedStorageSettings>
-			<defaultStorageSettings>
-				<filter>
-					<categories>
-						<li>StoneChunks</li>
-					</categories>
-				</filter>
-			</defaultStorageSettings>
 		</building>
 		<comps>
 			<li Class="CompProperties_ChangeableProjectile"/>
 		</comps>
-		<statBases>
-			<DeteriorationRate>0</DeteriorationRate>
-			<Mass>5</Mass>
-			<Flammability>0</Flammability>
-		</statBases>
 	</ThingDef>
 	
 	<ThingDef ParentName="Weapon_Trebuchet">

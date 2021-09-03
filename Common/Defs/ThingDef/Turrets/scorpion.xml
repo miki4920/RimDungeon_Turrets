@@ -2,7 +2,7 @@
 	<ThingDef ParentName="BaseDungeonTurret">
 		<defName>Turret_Scorpion</defName>
 		<label>scorpion turret</label>
-		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
+		<description>Described as a Sniper weapon rather than a siege engine, a Scorpion can provide a very accurate fire support over long distances. Whilst the rate of fire is also impressive, due to its size, it can only support small projectiles, which are far from deadly.</description>
 		<size>(1,1)</size>
 		<graphicData>
 			<texPath>Things/Building/Scorpion/ScorpionBase</texPath>
@@ -11,30 +11,36 @@
 		</graphicData>
 		<uiIconPath>Things/Building/Scorpion/ScorpionTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>100</MaxHitPoints>
-			<Flammability>0.7</Flammability>
+			<MaxHitPoints>200</MaxHitPoints>
+			<Flammability>0.5</Flammability>
 			<WorkToBuild>1800</WorkToBuild>
-			<Mass>8</Mass>
+			<Mass>50</Mass>
 			<Beauty>-20</Beauty>
-			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+			<ShootingAccuracyTurret>0.983</ShootingAccuracyTurret>
 		</statBases>
+		<stuffCategories>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>25</costStuffCount>
 		<costList>
-			<WoodLog>100</WoodLog>
+			<WoodLog>25</WoodLog>
+			<Steel>25</Steel>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
 				<guns>
-					<li>Weapon_ScorpionSingle</li>
+					<li>Weapon_ScorpionSingleBolt</li>
+					<li>Weapon_ScorpionSingleStone</li>
 				</guns>
 				<firingArc>60</firingArc>
 			</li>
 		</modExtensions>
 		<comps>
 			<li Class="CompProperties_Refuelable">
-				<fuelLabel>Bolts until rearm</fuelLabel>
+				<fuelLabel>Bolts Left:</fuelLabel>
 				<fuelGizmoLabel>Wooden Bolts</fuelGizmoLabel>
-				<outOfFuelMessage>Cannot shoot: No wood for bolts</outOfFuelMessage>
+				<outOfFuelMessage>Cannot shoot: Not enough wood for bolts</outOfFuelMessage>
 				<fuelFilter>
 					<thingDefs>
 						<li>WoodLog</li>
@@ -42,7 +48,7 @@
 				</fuelFilter>
 				<fuelCapacity>25</fuelCapacity>
 				<fuelMultiplier>1</fuelMultiplier>
-				<initialFuelPercent>1</initialFuelPercent>
+				<initialFuelPercent>0</initialFuelPercent>
 				<autoRefuelPercent>0</autoRefuelPercent>
 				<showFuelGizmo>true</showFuelGizmo>
 				<minimumFueledThreshold>1</minimumFueledThreshold>
@@ -51,27 +57,40 @@
 			</li>
 		</comps>
 		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
-		<designationCategory>Security</designationCategory>
 		<building>
 			<combatPower>45</combatPower>
-			<ai_combatDangerous>true</ai_combatDangerous>
-			<turretGunDef>Weapon_ScorpionSingle</turretGunDef>
+			<turretGunDef>Weapon_ScorpionSingleBolt</turretGunDef>
 			<turretBurstCooldownTime>1</turretBurstCooldownTime>
 			<turretTopDrawSize>1</turretTopDrawSize>
 		</building>
-	<researchPrerequisites>
-      <li>GunTurrets</li>
-    </researchPrerequisites>
+	</ThingDef>
+	
+	<ThingDef Name="Weapon_Scorpion"
+        		ParentName="BaseWeaponTurret"
+        		Abstract="True">
+		<defName>Weapon_Scorpion</defName>
+		<label>ballista weapon</label>
+		<description>A small crossbow to be mounted on top of a scorpion.</description>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/Scorpion/Scorpion/ScorpionTop</texPath>
+		</graphicData>
+		<statBases>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>25</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
 	</ThingDef>
 	
 	<ThingDef ParentName="Weapon_Ballista">
-		<defName>Weapon_ScorpionSingle</defName>
+		<defName>Weapon_ScorpionSingleBolt</defName>
 		<label>Single Bolt</label>
+		<description>Fires a single arrow-sized bolt which travels with great speed at the enemy. Low damage, but has great armour-piercing.</description>
 		<statBases>
-			<AccuracyTouch>0.25</AccuracyTouch>
-			<AccuracyShort>0.65</AccuracyShort>
-			<AccuracyMedium>0.60</AccuracyMedium>
-			<AccuracyLong>0.45</AccuracyLong>
+			<AccuracyTouch>0.20</AccuracyTouch>
+			<AccuracyShort>0.30</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.95</AccuracyLong>
 		</statBases>
 		<verbs>
 			<li>
@@ -79,6 +98,30 @@
 				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
 				<defaultProjectile>Projectile_RimDungeon_BoltSmall</defaultProjectile>
 				<range>45.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Bolt_Release</soundCast>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+	
+	<ThingDef ParentName="Weapon_Ballista">
+		<defName>Weapon_ScorpionSingleStone</defName>
+		<label>Single Stone</label>
+		<description>Fires a single fist-sized piece of wood at the enemy. Whilst the damage is significant, this weapon is most effective against unarmored opponents.</description>
+		<statBases>
+			<AccuracyTouch>0.20</AccuracyTouch>
+			<AccuracyShort>0.30</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.95</AccuracyLong>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeonStoneSmall</defaultProjectile>
+				<range>45.9</range>
+				<forcedMissRadius>1</forcedMissRadius>	
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Bolt_Release</soundCast>
 				<consumeFuelPerShot>1</consumeFuelPerShot>

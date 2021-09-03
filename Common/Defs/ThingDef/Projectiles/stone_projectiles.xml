@@ -31,13 +31,36 @@
 		</graphicData>
 		<modExtensions>
 			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>1</shotCount>
+			</li>
+		</modExtensions>
+		<thingClass>Projectile_Explosive</thingClass>
+		<projectile>
+			<damageDef>Stone</damageDef>
+			<damageAmountBase>25</damageAmountBase>
+			<explosionRadius>0.5</explosionRadius>
+			<armorPenetrationBase>0.5</armorPenetrationBase>
+			<stoppingPower>2.5</stoppingPower>
+			<speed>75</speed>
+		</projectile>
+	</ThingDef>
+	
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeonStoneSmall_Multishot</defName>
+		<label>multi shot catapult</label>
+		<graphicData>
+			<texPath>Things/Projectile/Stone</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
 				<shotCount>10</shotCount>
 			</li>
 		</modExtensions>
 		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
 			<damageDef>Stone</damageDef>
-			<damageAmountBase>20</damageAmountBase>
+			<damageAmountBase>25</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 			<armorPenetrationBase>0.5</armorPenetrationBase>
 			<stoppingPower>2.5</stoppingPower>
