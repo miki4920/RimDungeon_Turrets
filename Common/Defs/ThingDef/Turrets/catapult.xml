@@ -15,11 +15,6 @@
 			<WorkToBuild>1800</WorkToBuild>
 			<ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
 		</statBases>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-		</stuffCategories>
-		<costStuffCount>100</costStuffCount>
 		<costList>
 			<WoodLog>50</WoodLog>
 		</costList>

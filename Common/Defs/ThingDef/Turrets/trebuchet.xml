@@ -20,11 +20,6 @@
 			<Beauty>-20</Beauty>
 			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
 		</statBases>
-		<stuffCategories>
-			<li>Metallic</li>
-			<li>Woody</li>
-		</stuffCategories>
-		<costStuffCount>50</costStuffCount>
 		<costList>
 			<WoodLog>150</WoodLog>
 		</costList>
