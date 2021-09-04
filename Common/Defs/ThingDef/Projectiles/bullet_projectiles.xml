@@ -1,0 +1,56 @@
+<Defs>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeonBullet</defName>
+		<label>mini-turret bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>1</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeonBullet_Burst</defName>
+		<label>mini-turret bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>5</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+	<ThingDef ParentName="BaseBullet">
+		<defName>Projectile_RimDungeonBullet_Multishot</defName>
+		<label>mini-turret bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<modExtensions>
+			<li Class="RimDungeon.Projectile_Def">
+				<shotCount>25</shotCount>
+			</li>
+		</modExtensions>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>10</damageAmountBase>
+			<speed>100</speed>
+		</projectile>
+	</ThingDef>
+</Defs>

@@ -2,7 +2,7 @@
 	<ThingDef ParentName="BaseDungeonTurret">
 		<defName>OrganGunTurret</defName>
 		<label>organ gun turret</label>
-		<description>A Ballista. Has a great stopping power and accuracy, but takes a long time to reload.</description>
+		<description>A medieval volley gun with many small-caliber iron barrels set up parallel on a platform. Whilst it doesn't do a significant amount of damage, the number of guns allows it to provide a supressing fire.</description>
 		<size>(2,2)</size>
 		<graphicData>
 			<texPath>Things/Building/OrganGun/OrganGunBase</texPath>
@@ -11,33 +11,46 @@
 		</graphicData>
 		<uiIconPath>Things/Building/OrganGun/OrganGunTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>180</MaxHitPoints>
+			<MaxHitPoints>400</MaxHitPoints>
+			<Flammability>0.5</Flammability>
 			<WorkToBuild>1800</WorkToBuild>
-			<ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
+			<Mass>50</Mass>
+			<Beauty>-20</Beauty>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
 		</statBases>
+		<stuffCategories>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>50</costStuffCount>
 		<costList>
 			<WoodLog>50</WoodLog>
+			<Steel>200</Steel>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
 				<firingArc>120</firingArc>
+				<guns>
+					<li>Weapon_OrganGunSingle</li>
+					<li>Weapon_OrganGunBurst</li>
+					<li>Weapon_OrganGunMultishot</li>
+				</guns>
 			</li>
 		</modExtensions>
 		<comps>
 			<li Class="CompProperties_Refuelable">
-				<fuelLabel>Bolts until rearm</fuelLabel>
-				<fuelGizmoLabel>Wooden Bolts</fuelGizmoLabel>
-				<outOfFuelMessage>Cannot shoot: No wood for bolts</outOfFuelMessage>
+				<fuelLabel>Bullets until rearm</fuelLabel>
+				<fuelGizmoLabel>Bullets</fuelGizmoLabel>
+				<outOfFuelMessage>Cannot shoot: Not enough bullets</outOfFuelMessage>
 				<fuelFilter>
 					<thingDefs>
-						<li>WoodLog</li>
+						<li>Steel</li>
 					</thingDefs>
 				</fuelFilter>
-				<fuelCapacity>100</fuelCapacity>
-				<fuelMultiplier>1</fuelMultiplier>
-				<initialFuelPercent>1</initialFuelPercent>
-				<autoRefuelPercent>0.25</autoRefuelPercent>
+				<fuelCapacity>150</fuelCapacity>
+				<fuelMultiplier>2</fuelMultiplier>
+				<initialFuelPercent>0</initialFuelPercent>
+				<autoRefuelPercent>0</autoRefuelPercent>
 				<showFuelGizmo>true</showFuelGizmo>
 				<minimumFueledThreshold>1</minimumFueledThreshold>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
@@ -46,33 +59,58 @@
 		</comps>
 		<building>
 			<turretGunDef>Weapon_OrganGunSingle</turretGunDef>
-			<turretBurstCooldownTime>8</turretBurstCooldownTime>
+			<turretBurstCooldownTime>10</turretBurstCooldownTime>
 			<turretTopDrawSize>3</turretTopDrawSize>
 		</building>
-	<researchPrerequisites>
-      <li>GunTurrets</li>
-    </researchPrerequisites>
 	</ThingDef>
 	
 	<ThingDef Name="Weapon_OrganGun"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
-		<description>A powerful bow made to be mounted on a ballista.</description>
+		<description>Small-caliber iron barrels</description>
 		<statBases>
 			<DeteriorationRate>0</DeteriorationRate>
-			<Mass>5</Mass>
+			<Mass>25</Mass>
 			<Flammability>0</Flammability>
 		</statBases>
 	</ThingDef>
 	
 	<ThingDef ParentName="Weapon_OrganGun">
 		<defName>Weapon_OrganGunSingle</defName>
-		<label>Armour Piercing Bolt</label>
+		<label>Single Fire Mode</label>
+		<description>Single Fire Mode, capable of substaining supressing fire for extensive duration.</description>
 		<statBases>
-			<AccuracyTouch>0.75</AccuracyTouch>
-			<AccuracyShort>0.96</AccuracyShort>
-			<AccuracyMedium>0.96</AccuracyMedium>
-			<AccuracyLong>0.96</AccuracyLong>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.64</AccuracyShort>
+			<AccuracyMedium>0.41</AccuracyMedium>
+			<AccuracyLong>0.22</AccuracyLong>
+		</statBases>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/OrganGun/OrganGunTop</texPath>
+		</graphicData>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeonBullet</defaultProjectile>
+				<range>28.9</range>
+				<burstShotCount>25</burstShotCount>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+	
+	<ThingDef ParentName="Weapon_OrganGun">
+		<defName>Weapon_OrganGunBurst</defName>
+		<label>Burst Fire Mode</label>
+		<description>Single Fire Mode, capable of substaining supressing fire for extensive duration.</description>
+		<statBases>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.64</AccuracyShort>
+			<AccuracyMedium>0.41</AccuracyMedium>
+			<AccuracyLong>0.22</AccuracyLong>
 		</statBases>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -82,10 +120,38 @@
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>60</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_RimDungeon_BoltExplosive</defaultProjectile>
-				<range>45.9</range>
-				<burstShotCount>15</burstShotCount>
-				<soundCast>Stone_Release</soundCast>
+				<defaultProjectile>Projectile_RimDungeonBullet_Burst</defaultProjectile>
+				<range>28.9</range>
+				<burstShotCount>5</burstShotCount>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<consumeFuelPerShot>5</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+	
+	<ThingDef ParentName="Weapon_OrganGun">
+		<defName>Weapon_OrganGunMultishot</defName>
+		<label>Multishot Fire Mode</label>
+		<description>Single Fire Mode, capable of substaining supressing fire for extensive duration.</description>
+		<statBases>
+			<AccuracyTouch>0.70</AccuracyTouch>
+			<AccuracyShort>0.64</AccuracyShort>
+			<AccuracyMedium>0.41</AccuracyMedium>
+			<AccuracyLong>0.22</AccuracyLong>
+		</statBases>
+		<graphicData>
+			<graphicClass>Graphic_Single</graphicClass>
+			<texPath>Things/Building/OrganGun/OrganGunTop</texPath>
+		</graphicData>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeonBullet_Multishot</defaultProjectile>
+				<range>28.9</range>
+				<burstShotCount>1</burstShotCount>
+				<soundCast>Shot_BoltActionRifle</soundCast>
+				<consumeFuelPerShot>25</consumeFuelPerShot>
 			</li>
 		</verbs>
 	</ThingDef>
