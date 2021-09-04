@@ -62,4 +62,20 @@
       </li>
     </subSounds>
   </SoundDef>
+  
+  <SoundDef>
+    <defName>Musket_Release</defName>  
+    <context>MapOnly</context>  
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Musket_Release</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>15.70111~20.30627</volumeRange>      
+        <pitchRange>0.6976015~0.7769372</pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
  </Defs>
