@@ -9,7 +9,7 @@
             <clipPath>Bolt_Impact</clipPath>
           </li>
         </grains>      
-        <volumeRange>60.70111~70.30627</volumeRange>      
+        <volumeRange>40.70111~50.30627</volumeRange>      
         <pitchRange>0.6976015~0.7769372</pitchRange>
       </li>
     </subSounds>
@@ -25,7 +25,7 @@
             <clipPath>Bolt_Release</clipPath>
           </li>
         </grains>      
-        <volumeRange>90.70111~100.30627</volumeRange>      
+        <volumeRange>70.70111~80.30627</volumeRange>      
         <pitchRange>0.6976015~0.7769372</pitchRange>
       </li>
     </subSounds>
@@ -57,7 +57,7 @@
             <clipPath>Stone_Impact</clipPath>
           </li>
         </grains>      
-        <volumeRange>40.70111~50.30627</volumeRange>      
+        <volumeRange>30.70111~40.30627</volumeRange>      
         <pitchRange>0.6976015~0.7769372</pitchRange>
       </li>
     </subSounds>
