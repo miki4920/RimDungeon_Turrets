@@ -34,7 +34,7 @@
 		</thingCategories>
 		<projectile>
 			<damageDef>ArrowHighVelocity</damageDef>
-			<damageAmountBase>12</damageAmountBase>
+			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.75</armorPenetrationBase>
 			<stoppingPower>0.5</stoppingPower>
 			<speed>75</speed>
@@ -53,12 +53,12 @@
 		</thingCategories>
 		<modExtensions>
 			<li Class="RimDungeon.Projectile_Def">
-				<shotCount>10</shotCount>
+				<shotCount>5</shotCount>
 			</li>
 		</modExtensions>
 		<projectile>
 			<damageDef>ArrowHighVelocity</damageDef>
-			<damageAmountBase>12</damageAmountBase>
+			<damageAmountBase>15</damageAmountBase>
 			<armorPenetrationBase>0.75</armorPenetrationBase>
 			<stoppingPower>0.5</stoppingPower>
 			<speed>75</speed>

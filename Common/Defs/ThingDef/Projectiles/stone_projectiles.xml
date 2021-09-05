@@ -14,6 +14,7 @@
 		</modExtensions>
 		<projectile>
 			<damageDef>Stone</damageDef>
+			<flyOverhead>true</flyOverhead>
 			<damageAmountBase>100</damageAmountBase>
 			<explosionRadius>1.5</explosionRadius>
 			<armorPenetrationBase>0.5</armorPenetrationBase>
@@ -60,6 +61,7 @@
 		<thingClass>Projectile_Explosive</thingClass>
 		<projectile>
 			<damageDef>Stone</damageDef>
+			<flyOverhead>true</flyOverhead>
 			<damageAmountBase>25</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 			<armorPenetrationBase>0.5</armorPenetrationBase>
