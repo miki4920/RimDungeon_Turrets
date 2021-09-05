@@ -19,7 +19,16 @@ namespace RimDungeon
             {
                 return true;
             }
-            PublicFunctions.TryDrawFiringCone(__instance.verb.caster.Position, __instance.verb.caster.Rotation, __instance.verb.verbProps.range, TurretDef.firingArc);
+            float range = __instance.verb.verbProps.range;
+            float minRange = __instance.verb.verbProps.minRange;
+            if (range < 56.4)
+            {
+                PublicFunctions.TryDrawFiringCone(__instance.verb.caster.Position, __instance.verb.caster.Rotation, __instance.verb.verbProps.range, TurretDef.firingArc);
+            }
+            if(minRange < 56.4)
+            {
+                PublicFunctions.TryDrawFiringCone(__instance.verb.caster.Position, __instance.verb.caster.Rotation, __instance.verb.verbProps.minRange, TurretDef.firingArc);
+            }
             return false;
         }
 

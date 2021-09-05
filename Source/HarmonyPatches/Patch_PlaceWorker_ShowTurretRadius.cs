@@ -21,11 +21,11 @@ namespace RimDungeon
             {
                 return true;
             }
-            if (verbProperties.range > 0f)
+            if (verbProperties.range > 0f && verbProperties.range < 56.4)
             {
                 PublicFunctions.TryDrawFiringCone(loc, rot, verbProperties.range, TurretDef.firingArc);
             }
-            if (verbProperties.minRange > 0f)
+            if (verbProperties.minRange > 0f && verbProperties.minRange < 56.4)
             {
                 PublicFunctions.TryDrawFiringCone(loc, rot, verbProperties.minRange, TurretDef.firingArc);
             }

@@ -106,24 +106,23 @@ namespace RimDungeon
         public override void DrawExtraSelectionOverlays()
         {
             float range = this.AttackVerb.verbProps.range;
-            if (range < 90f)
+
+            if (TurretDef.firingArc == 360)
             {
-                if (TurretDef.firingArc == 360)
+                GenDraw.DrawRadiusRing(base.Position, range);
+            }
+            else
+            {
+                if(range > 0 && range < 56.4)
                 {
-                    GenDraw.DrawRadiusRing(base.Position, range);
+                    PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, range, TurretDef.firingArc);
                 }
-                else
+                if(this.AttackVerb.verbProps.minRange > 0 && this.AttackVerb.verbProps.minRange < range && this.AttackVerb.verbProps.minRange < 56.4)
                 {
-                    if(range > 0)
-                    {
-                        PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, range, TurretDef.firingArc);
-                    }
-                    if(this.AttackVerb.verbProps.minRange > 0 && this.AttackVerb.verbProps.minRange < range)
-                    {
-                        PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, this.AttackVerb.verbProps.minRange, TurretDef.firingArc);
-                    }
+                    PublicFunctions.TryDrawFiringCone(base.Position, base.Rotation, this.AttackVerb.verbProps.minRange, TurretDef.firingArc);
                 }
             }
+            
             if (this.burstWarmupTicksLeft > 0)
             {
                 int degreesWide = (int)((float)this.burstWarmupTicksLeft * 0.5f);

@@ -18,8 +18,8 @@ namespace RimDungeon
             IntVec3 position_caster = __instance.caster.Position;
             IntVec3 position_target = targ.Cell;
             Rot4 rot = __instance.caster.Rotation;
-            Turret_Def TurretDef = __instance.caster.def.GetModExtension<Turret_Def>();
-            if(TurretDef != null && TurretDef.firingArc < 360)
+            Turret_Def TurretDef = Turret_Def.Get(__instance.caster.def);
+            if (TurretDef.firingArc < 360)
             {
                 __result = __result && PublicFunctions.WithinFiringArcOf(position_target, position_caster, rot, TurretDef.firingArc);
             }
@@ -37,11 +37,11 @@ namespace RimDungeon
             {
                 return true;
             }
-            if(__instance.verbProps.range > 0)
+            if(__instance.verbProps.range > 0 && __instance.verbProps.range < 56.4)
             {
                 PublicFunctions.TryDrawFiringCone(__instance.caster.Position, __instance.caster.Rotation, __instance.verbProps.range, arc);
             }
-            if(__instance.verbProps.minRange > 0)
+            if(__instance.verbProps.minRange > 0 && __instance.verbProps.minRange < 56.4)
             {
                 PublicFunctions.TryDrawFiringCone(__instance.caster.Position, __instance.caster.Rotation, __instance.verbProps.minRange, arc);
             }
