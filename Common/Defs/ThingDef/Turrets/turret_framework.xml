@@ -14,7 +14,7 @@
 		<tickerType>Normal</tickerType>
 		<passability>PassThroughOnly</passability>
 		<pathCost>50</pathCost>
-		<fillPercent>0.75</fillPercent>
+		<fillPercent>0.5</fillPercent>
 		<hasTooltip>true</hasTooltip>
 		<terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
 		<designationCategory>Security</designationCategory>
