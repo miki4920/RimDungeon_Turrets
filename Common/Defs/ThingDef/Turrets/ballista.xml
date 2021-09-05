@@ -11,7 +11,7 @@
 		</graphicData>
 		<uiIconPath>Things/Building/Ballista/BallistaTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>400</MaxHitPoints>
+			<MaxHitPoints>200</MaxHitPoints>
 			<Flammability>0.5</Flammability>
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>50</Mass>
@@ -23,10 +23,8 @@
 		</stuffCategories>
 		<costStuffCount>50</costStuffCount>
 		<costList>
-			<WoodLog>75</WoodLog>
-			<Steel>25</Steel>
+			<WoodLog>150</WoodLog>
 		</costList>
-		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
 				<guns>
@@ -48,8 +46,8 @@
 				</fuelFilter>
 				<fuelCapacity>75</fuelCapacity>
 				<fuelMultiplier>1</fuelMultiplier>
-				<initialFuelPercent>0</initialFuelPercent>
-				<autoRefuelPercent>0</autoRefuelPercent>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.5</autoRefuelPercent>
 				<showFuelGizmo>true</showFuelGizmo>
 				<minimumFueledThreshold>1</minimumFueledThreshold>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
@@ -83,7 +81,7 @@
 	</ThingDef>
 	<ThingDef ParentName="Weapon_Ballista">
 		<defName>Weapon_BallistaSingle</defName>
-		<label>single bolt</label>
+		<label>Single Bolt</label>
 		<description>Fires a single heavy armour-piercing bolt which causes a minor explosion on impact. It's more accurate at longer ranges.</description>
 		<statBases>
 			<AccuracyTouch>0.20</AccuracyTouch>

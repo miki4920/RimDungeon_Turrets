@@ -1,11 +1,9 @@
 
 <Defs>
 	<ThingDef ParentName="BaseDungeonTurret">
-		<defName>Turret_Trebuchet</defName>
+		<defName>TrebuchetTurret</defName>
 		<label>trebuchet turret</label>
-		<description>A trebuchet is a powerful catapult that throws its
-payload in a high arc, so it can hit targets behind cover.
-Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to its size, the trebuchet is capable of firing anywhere on the map.</description>
+		<description>A massive engine capable of throwing rocks with great force. Uses stone chunks as ammunition and must be loaded after each shot. Deals a great amount of damage, and has two different firing modes.</description>
 		<size>(3,3)</size>
 		<interactionCellOffset>(0,0,-2)</interactionCellOffset>
 		<graphicData>
@@ -15,7 +13,7 @@ Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to 
 		</graphicData>
 		<uiIconPath>Things/Building/Trebuchet/TrebuchetTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>800</MaxHitPoints>
+			<MaxHitPoints>200</MaxHitPoints>
 			<Flammability>0.5</Flammability>
 			<WorkToBuild>7200</WorkToBuild>
 			<Mass>50</Mass>
@@ -33,33 +31,30 @@ Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to 
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
 			<li Class="RimDungeon.Turret_Def">
-				<firingArc>120</firingArc>
 				<guns>
 					<li>Weapon_TrebuchetSingle</li>
 					<li>Weapon_TrebuchetMulti</li>
 				</guns>
+				<firingArc>120</firingArc>
 			</li>
 		</modExtensions>
 		<building>
 			<turretGunDef>Weapon_TrebuchetSingle</turretGunDef>
 			<turretBurstWarmupTime>4.0</turretBurstWarmupTime>
 			<turretBurstCooldownTime>28.0</turretBurstCooldownTime>
-			<turretTopDrawSize>3</turretTopDrawSize>
+			<turretTopDrawSize>2.5</turretTopDrawSize>
 		</building>
-				<inspectorTabs>
+		<inspectorTabs>
 			<li>ITab_Shells</li>
 		</inspectorTabs>
+		<placeWorkers>
+			<li>PlaceWorker_NotUnderRoof</li>
+		</placeWorkers>
 	</ThingDef>
-	
 	<ThingDef Name="Weapon_Trebuchet"
         		ParentName="BaseWeaponTurret"
         		Abstract="True">
-		<defName>Weapon_Trebuchet</defName>
 		<description>An arm of a trebuchet. Used to launch 90 kg projectiles over 300 metres.</description>
-		<graphicData>
-			<graphicClass>Graphic_Single</graphicClass>
-			<texPath>Things/Building/Trebuchet/TrebuchetTop</texPath>
-		</graphicData>
 		<statBases>
 			<DeteriorationRate>0</DeteriorationRate>
 			<Mass>25</Mass>
@@ -78,15 +73,15 @@ Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to 
 			<li Class="CompProperties_ChangeableProjectile"/>
 		</comps>
 	</ThingDef>
-	
 	<ThingDef ParentName="Weapon_Trebuchet">
 		<defName>Weapon_TrebuchetSingle</defName>
-		<label>Armour Piercing Bolt</label>
+		<label>Single Boulder</label>
+		<description>Fires a massive boulder which impacts a large area with enough force to instantly kill lightly armoured foes. It's more accurate at longer ranges, and can't fire at all close up.</description>
 		<statBases>
-			<AccuracyTouch>0.75</AccuracyTouch>
-			<AccuracyShort>0.96</AccuracyShort>
-			<AccuracyMedium>0.96</AccuracyMedium>
-			<AccuracyLong>0.96</AccuracyLong>
+			<AccuracyTouch>0.20</AccuracyTouch>
+			<AccuracyShort>0.30</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.95</AccuracyLong>
 		</statBases>
 		<graphicData>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -97,17 +92,24 @@ Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to 
 				<verbClass>Verb_Shoot</verbClass>
 				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
 				<defaultProjectile>Projectile_RimDungeonStoneExplosive</defaultProjectile>
-				<range>45.9</range>
+				<range>500</range>
+				<isMortar>true</isMortar>
+				<requireLineOfSight>false</requireLineOfSight>
+				<minRange>23.9</minRange>
 				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Stone_Release</soundCast>
-				<consumeFuelPerShot>5</consumeFuelPerShot>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
 	</ThingDef>
 	<ThingDef ParentName="Weapon_Trebuchet">
 		<defName>Weapon_TrebuchetMulti</defName>
-		<label>Multi-Shot Ammunition</label>
+		<label>Multiple Boulders</label>
+		<description>Fires multiple smaller boulders which impact both the target and the area around them. Whilst less devastating, it does not have a minimum range.</description>
 		<statBases>
 			<AccuracyTouch>0.5</AccuracyTouch>
 			<AccuracyShort>0.42</AccuracyShort>
@@ -121,13 +123,18 @@ Before the trebuchet can be fired, it must be loaded with a stone chunk. Due to 
 		<verbs>
 			<li>
 				<verbClass>Verb_Shoot</verbClass>
-				<ticksBetweenBurstShots>20</ticksBetweenBurstShots>
-				<defaultProjectile>Projectile_RimDungeonStoneSmall</defaultProjectile>
-				<range>45.9</range>
+				<ticksBetweenBurstShots>0</ticksBetweenBurstShots>
+				<defaultProjectile>Projectile_RimDungeonStoneSmall_Multishot</defaultProjectile>
+				<range>500</range>
+				<isMortar>true</isMortar>
+				<requireLineOfSight>false</requireLineOfSight>
 				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Stone_Release</soundCast>
-				<consumeFuelPerShot>10</consumeFuelPerShot>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+				<targetParams>
+					<canTargetLocations>true</canTargetLocations>
+				</targetParams>
 			</li>
 		</verbs>
 	</ThingDef>

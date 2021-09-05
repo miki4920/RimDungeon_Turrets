@@ -11,7 +11,7 @@
 		</graphicData>
 		<uiIconPath>Things/Building/Scorpion/ScorpionTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>200</MaxHitPoints>
+			<MaxHitPoints>100</MaxHitPoints>
 			<Flammability>0.5</Flammability>
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>50</Mass>
@@ -48,8 +48,8 @@
 				</fuelFilter>
 				<fuelCapacity>25</fuelCapacity>
 				<fuelMultiplier>1</fuelMultiplier>
-				<initialFuelPercent>0</initialFuelPercent>
-				<autoRefuelPercent>0</autoRefuelPercent>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.5</autoRefuelPercent>
 				<showFuelGizmo>true</showFuelGizmo>
 				<minimumFueledThreshold>1</minimumFueledThreshold>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>

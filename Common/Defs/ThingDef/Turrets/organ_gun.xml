@@ -11,7 +11,7 @@
 		</graphicData>
 		<uiIconPath>Things/Building/OrganGun/OrganGunTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>400</MaxHitPoints>
+			<MaxHitPoints>200</MaxHitPoints>
 			<Flammability>0.5</Flammability>
 			<WorkToBuild>1800</WorkToBuild>
 			<Mass>50</Mass>
@@ -49,8 +49,8 @@
 				</fuelFilter>
 				<fuelCapacity>150</fuelCapacity>
 				<fuelMultiplier>2</fuelMultiplier>
-				<initialFuelPercent>0</initialFuelPercent>
-				<autoRefuelPercent>0</autoRefuelPercent>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.5</autoRefuelPercent>
 				<showFuelGizmo>true</showFuelGizmo>
 				<minimumFueledThreshold>1</minimumFueledThreshold>
 				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
@@ -78,7 +78,7 @@
 	<ThingDef ParentName="Weapon_OrganGun">
 		<defName>Weapon_OrganGunSingle</defName>
 		<label>Single Fire Mode</label>
-		<description>Single Fire Mode, capable of substaining supressing fire for extensive duration.</description>
+		<description>25 Single shots, capable of providing supressing fire.</description>
 		<statBases>
 			<AccuracyTouch>0.70</AccuracyTouch>
 			<AccuracyShort>0.64</AccuracyShort>
@@ -105,7 +105,7 @@
 	<ThingDef ParentName="Weapon_OrganGun">
 		<defName>Weapon_OrganGunBurst</defName>
 		<label>Burst Fire Mode</label>
-		<description>Single Fire Mode, capable of substaining supressing fire for extensive duration.</description>
+		<description>Fires 5 bursts of 5 bullets. Effective against fast moving groups.</description>
 		<statBases>
 			<AccuracyTouch>0.70</AccuracyTouch>
 			<AccuracyShort>0.64</AccuracyShort>
@@ -131,8 +131,8 @@
 	
 	<ThingDef ParentName="Weapon_OrganGun">
 		<defName>Weapon_OrganGunMultishot</defName>
-		<label>Multishot Fire Mode</label>
-		<description>Single Fire Mode, capable of substaining supressing fire for extensive duration.</description>
+		<label>Shotgun Fire Mode</label>
+		<description>Fires 25 bullets at once. Effective against large groups.</description>
 		<statBases>
 			<AccuracyTouch>0.70</AccuracyTouch>
 			<AccuracyShort>0.64</AccuracyShort>

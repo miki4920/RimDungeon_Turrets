@@ -11,7 +11,7 @@
 		</graphicData>
 		<uiIconPath>Things/Building/Catapult/CatapultTop</uiIconPath>
 		<statBases>
-			<MaxHitPoints>400</MaxHitPoints>
+			<MaxHitPoints>200</MaxHitPoints>
 			<Flammability>0.5</Flammability>
 			<WorkToBuild>3600</WorkToBuild>
 			<Mass>50</Mass>
@@ -23,8 +23,8 @@
 		</stuffCategories>
 		<costStuffCount>50</costStuffCount>
 		<costList>
-			<WoodLog>100</WoodLog>
-			<Steel>50</Steel>
+			<WoodLog>125</WoodLog>
+			<Steel>75</Steel>
 		</costList>
 		<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
 		<modExtensions>
@@ -46,6 +46,9 @@
 		<inspectorTabs>
 			<li>ITab_Shells</li>
 		</inspectorTabs>
+		<placeWorkers>
+			<li>PlaceWorker_NotUnderRoof</li>
+		</placeWorkers>
 	</ThingDef>
 	<ThingDef Name="Weapon_Catapult"
         		ParentName="BaseWeaponTurret"
@@ -71,7 +74,7 @@
 	</ThingDef>
 	<ThingDef ParentName="Weapon_Catapult">
 		<defName>Weapon_CatapultSingle</defName>
-		<label>single boulder</label>
+		<label>Single Boulder</label>
 		<description>Fires a massive boulder which impacts a large area with enough force to instantly kill lightly armoured foes. It's more accurate at longer ranges, and can't fire at all close up.</description>
 		<statBases>
 			<AccuracyTouch>0.20</AccuracyTouch>
@@ -90,6 +93,7 @@
 				<defaultProjectile>Projectile_RimDungeonStoneExplosive</defaultProjectile>
 				<range>45.9</range>
 				<minRange>11.9</minRange>
+				<requireLineOfSight>false</requireLineOfSight>
 				<forcedMissRadius>5</forcedMissRadius>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Stone_Release</soundCast>
@@ -102,7 +106,7 @@
 	</ThingDef>
 	<ThingDef ParentName="Weapon_Catapult">
 		<defName>Weapon_CatapultMulti</defName>
-		<label>multiple boulders</label>
+		<label>Multiple Boulders</label>
 		<description>Fires multiple smaller boulders which impact both the target and the area around them. It's more accurate at medium range and does not have a minimum range.</description>
 		<statBases>
 			<AccuracyTouch>0.5</AccuracyTouch>
@@ -121,6 +125,7 @@
 				<defaultProjectile>Projectile_RimDungeonStoneSmall_Multishot</defaultProjectile>
 				<range>23.9</range>
 				<forcedMissRadius>5</forcedMissRadius>
+				<requireLineOfSight>false</requireLineOfSight>
 				<burstShotCount>1</burstShotCount>
 				<soundCast>Stone_Release</soundCast>
 				<consumeFuelPerShot>1</consumeFuelPerShot>
