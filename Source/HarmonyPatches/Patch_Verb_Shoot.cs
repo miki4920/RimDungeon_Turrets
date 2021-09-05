@@ -17,18 +17,18 @@ namespace RimDungeon
         [HarmonyReversePatch]
         [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
         [MethodImpl(MethodImplOptions.NoInlining)]
-        static bool BaseMethodDummy(Verb_Shoot instance)
+        public static bool BaseMethodDummy(Verb_Shoot instance)
         {
             return false;
         }
 
         [HarmonyPatch(typeof(Verb_Shoot), "TryCastShot")]
-        static bool Prefix(Verb_Shoot __instance, ref bool __result)
+        public static bool Prefix(Verb_Shoot __instance, ref bool __result)
         {
-            var castedShot = BaseMethodDummy(__instance);
-            if(__instance.verbProps.defaultProjectile.HasModExtension<Projectile_Def>()) 
+            if(__instance.Projectile.HasModExtension<Projectile_Def>()) 
             {
-                int projectileCount = __instance.verbProps.defaultProjectile.GetModExtension<Projectile_Def>().shotCount;
+                var castedShot = BaseMethodDummy(__instance);
+                int projectileCount = __instance.Projectile.GetModExtension<Projectile_Def>().shotCount;
                 if (castedShot && projectileCount - 1 > 0)
                 {
                     for (int i = 0; i < projectileCount - 1; i++)
@@ -36,9 +36,10 @@ namespace RimDungeon
                         BaseMethodDummy(__instance);
                     }
                 }
+                __result = castedShot;
+                return false;
             }
-            __result = castedShot;
-            return false;
+            return true;
         }
 
     }
