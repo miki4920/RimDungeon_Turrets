@@ -48,22 +48,17 @@ namespace RimDungeon
         public void DetermineGun()
         {
             var baseClass = GetType().BaseType;
-            CompChangeableProjectile projectile = null;
-            if (this.gun != null)
-            {
-                projectile = this.gun.TryGetComp<CompChangeableProjectile>();
-            }
+            CompChangeableProjectile projectile = this.gun.TryGetComp<CompChangeableProjectile>();
             if (changeGun)
             {
                 SetNextGun();
             }
             MethodInfo updateGunMethod = baseClass.GetMethod("UpdateGunVerbs", BindingFlags.NonPublic | BindingFlags.Instance);
             updateGunMethod.Invoke(this, new object[] { });
-            if (projectile != null && projectile.Loaded && projectile.LoadedShell != this.AttackVerb.verbProps.defaultProjectile)
+            if (projectile != null && projectile.Loaded)
             {
-                ThingDef shell = projectile.LoadedShell;
-                shell.projectileWhenLoaded = this.AttackVerb.verbProps.defaultProjectile;
-                this.gun.TryGetComp<CompChangeableProjectile>().LoadShell(shell, this.AttackVerb.verbProps.burstShotCount);
+                projectile.LoadedShell.projectileWhenLoaded = this.AttackVerb.verbProps.defaultProjectile;
+                this.gun.TryGetComp<CompChangeableProjectile>().LoadShell(projectile.LoadedShell, 1);
             }
             if(this.CurrentTarget.IsValid)
             {
@@ -91,6 +86,7 @@ namespace RimDungeon
                     changedShell = true;
                     ThingDef shell = projectile.LoadedShell;
                     shell.projectileWhenLoaded = AttackVerb.verbProps.defaultProjectile;
+                    Log.Message(shell.ToString());
                     this.gun.TryGetComp<CompChangeableProjectile>().LoadShell(shell, this.AttackVerb.verbProps.burstShotCount);
                 }
                 else if (!projectile.Loaded)

@@ -49,6 +49,7 @@
     <Compile Include="HarmonyPatches\HarmonyPatches.cs" />
     <Compile Include="HarmonyPatches\Patch_Building_TurretGun.cs" />
     <Compile Include="HarmonyPatches\Patch_Command_VerbTarget.cs" />
+    <Compile Include="HarmonyPatches\Patch_CompChangeableProjectile.cs" />
     <Compile Include="HarmonyPatches\Patch_PlaceWorker_ShowTurretRadius.cs" />
     <Compile Include="HarmonyPatches\Patch_Verb.cs" />
     <Compile Include="HarmonyPatches\Patch_Verb_Shoot.cs" />
